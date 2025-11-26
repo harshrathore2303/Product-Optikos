@@ -16,4 +16,3 @@ functions:
       - httpApi: 
           path: /generate
           method: post
-

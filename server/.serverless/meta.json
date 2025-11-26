@@ -109,7 +109,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-ap-south-1-5b4d719f-f761",
-                  "S3Key": "serverless/product-optikos-backend/dev/1764141051974-2025-11-26T07:10:51.974Z/product-optikos-backend.zip"
+                  "S3Key": "serverless/product-optikos-backend/dev/1764150337174-2025-11-26T09:45:37.174Z/product-optikos-backend.zip"
                 },
                 "Handler": "server.handler",
                 "Runtime": "nodejs20.x",
@@ -132,14 +132,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8": {
+            "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "HVQ0HieeihhbZ+FGoZ2/wACR87nENEczx+2Gb4UZPBE="
+                "CodeSha256": "gN6IAc+icyrSE3Gts9n77mMd7ZWgT4Xw53vs4lX0dVQ="
               }
             },
             "HttpApi": {
@@ -248,7 +248,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8"
+                "Ref": "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0"
               },
               "Export": {
                 "Name": "sls-product-optikos-backend-dev-ApiLambdaFunctionQualifiedArn"
@@ -311,7 +311,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8"
+          "versionLogicalId": "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0"
         }
       }
     },
@@ -417,7 +417,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-ap-south-1-5b4d719f-f761",
-                "S3Key": "serverless/product-optikos-backend/dev/1764141051974-2025-11-26T07:10:51.974Z/product-optikos-backend.zip"
+                "S3Key": "serverless/product-optikos-backend/dev/1764150337174-2025-11-26T09:45:37.174Z/product-optikos-backend.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs20.x",
@@ -440,14 +440,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8": {
+          "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "HVQ0HieeihhbZ+FGoZ2/wACR87nENEczx+2Gb4UZPBE="
+              "CodeSha256": "gN6IAc+icyrSE3Gts9n77mMd7ZWgT4Xw53vs4lX0dVQ="
             }
           },
           "HttpApi": {
@@ -556,7 +556,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8"
+              "Ref": "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0"
             },
             "Export": {
               "Name": "sls-product-optikos-backend-dev-ApiLambdaFunctionQualifiedArn"
@@ -612,7 +612,7 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "org: learnanddevelop\napp: product-optikos-backend\nservice: product-optikos-backend\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  region: ap-south-1\n  environment:\n    REMOVE_BG_API_KEY: ${env:REMOVE_BG_API_KEY}\n\nfunctions:\n  api:\n    handler: server.handler\n    events:\n      - httpApi: \n          path: /generate\n          method: post\n\n",
+    "serviceRawFile": "org: learnanddevelop\napp: product-optikos-backend\nservice: product-optikos-backend\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  region: ap-south-1\n  environment:\n    REMOVE_BG_API_KEY: ${env:REMOVE_BG_API_KEY}\n\nfunctions:\n  api:\n    handler: server.handler\n    events:\n      - httpApi: \n          path: /generate\n          method: post",
     "command": [
       "deploy"
     ],
@@ -625,12 +625,12 @@
     "serviceProviderAwsCfStackName": "product-optikos-backend-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-south-1:913524948635:stack/product-optikos-backend-dev/e5861fd0-ca8c-11f0-910b-026d415a7647",
     "serviceProviderAwsCfStackCreated": "2025-11-26T05:58:14.992Z",
-    "serviceProviderAwsCfStackUpdated": null,
-    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackUpdated": "2025-11-26T07:11:00.363Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "ApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:ap-south-1:913524948635:function:product-optikos-backend-dev-api:1",
+        "OutputValue": "arn:aws:lambda:ap-south-1:913524948635:function:product-optikos-backend-dev-api:2",
         "Description": "Current Lambda function version",
         "ExportName": "sls-product-optikos-backend-dev-ApiLambdaFunctionQualifiedArn"
       },
@@ -745,7 +745,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-ap-south-1-5b4d719f-f761",
-              "S3Key": "serverless/product-optikos-backend/dev/1764141051974-2025-11-26T07:10:51.974Z/product-optikos-backend.zip"
+              "S3Key": "serverless/product-optikos-backend/dev/1764150337174-2025-11-26T09:45:37.174Z/product-optikos-backend.zip"
             },
             "Handler": "server.handler",
             "Runtime": "nodejs20.x",
@@ -768,14 +768,14 @@
             "ApiLogGroup"
           ]
         },
-        "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8": {
+        "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "ApiLambdaFunction"
             },
-            "CodeSha256": "HVQ0HieeihhbZ+FGoZ2/wACR87nENEczx+2Gb4UZPBE="
+            "CodeSha256": "gN6IAc+icyrSE3Gts9n77mMd7ZWgT4Xw53vs4lX0dVQ="
           }
         },
         "HttpApi": {
@@ -884,7 +884,7 @@
         "ApiLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "ApiLambdaVersionanCkXtNGFtJ9jpMLuIbYEEpgVAqBZT5l46CBhUdI8"
+            "Ref": "ApiLambdaVersionwbPfpvG0jwT8BVfQjbhqbVqUhQhPNLkXDffe7bqe0"
           },
           "Export": {
             "Name": "sls-product-optikos-backend-dev-ApiLambdaFunctionQualifiedArn"
