@@ -1,0 +1,19 @@
+org: learnanddevelop
+app: product-optikos-backend
+service: product-optikos-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  environment:
+    REMOVE_BG_API_KEY: ${env:REMOVE_BG_API_KEY}
+
+functions:
+  api:
+    handler: server.handler
+    events:
+      - httpApi: 
+          path: /generate
+          method: post
+

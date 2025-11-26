@@ -4,6 +4,7 @@ import multer from "multer";
 import dotenv from "dotenv";
 import { removeBgAxios } from "./services.js";
 dotenv.config();
+import ServerlessHttp from "serverless-http";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -19,7 +20,6 @@ app.use(
   })
 );
 
-
 app.post("/generate", upload.single("image_file"), async (req, res) => {
   try {
     const file = req.file;
@@ -34,6 +34,4 @@ app.post("/generate", upload.single("image_file"), async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server has started in ${PORT}`);
-});
+export const handler = ServerlessHttp(app);

@@ -8,11 +8,7 @@ function App() {
   const [error, setError] = useState(null);
   const [output, setOutput] = useState(null);
   const [pre, setPre] = useState(null);
-  function handlePrompt(e) {
-    setError(null);
-    setPrompt(e.target.value);
-  }
-
+  
   function handleImage(e) {
     setError(null);
     const selected = e.target.files[0];
@@ -59,7 +55,7 @@ function App() {
   }
 
   return (
-    <div className="from-rose-400 bg-linear-to-br to-indigo-500 h-full w-full">
+    <div className="from-rose-400 bg-linear-to-br to-indigo-500 min-h-screen w-full">
       <div className="w-2xl mx-auto py-26">
         <h1 className="text-4xl text-white text-center font-semibold">
           Product Optikos
