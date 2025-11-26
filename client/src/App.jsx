@@ -1,50 +1,80 @@
 import { useState } from "react";
-
-const data = ["White background", "Living room", "Holiday", "Studio lighting"];
+import { api } from "./axios";
 
 function App() {
-  const [formValues, setFormValues] = useState({
-    prompt: "",
-    image: "",
-  });
+  const [prompt, setPrompt] = useState("White background");
+  const [file, setFile] = useState(null);
   const [loading, isLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  function handleChange(e) {
+  const [output, setOutput] = useState(null);
+  const [pre, setPre] = useState(null);
+  function handlePrompt(e) {
     setError(null);
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
+    setPrompt(e.target.value);
   }
 
-  function submit(e) {
-    e.preventDefault();
-    console.log("submitting data");
+  function handleImage(e) {
+    setError(null);
+    const selected = e.target.files[0];
+    setFile(selected);
+    if (selected) {
+      const imgURL = URL.createObjectURL(selected);
+      setPre(imgURL);
+    }
   }
-  
-  function handleSubmit(){
-    console.log("kejsnvkjs")
-    if (!formValues.image){
-      setError("Image is not available")
+
+  async function handleSubmit() {
+    if (!file) {
+      setError("Image is not available");
       return;
-    } else if (!formValues.prompt){
-      setError("Please select a prompt")
+    } else if (!prompt) {
+      setError("Please select a prompt");
       return;
     }
     isLoading(() => true);
-    // call api and fetch data
+    const formData = new FormData();
+    formData.append("prompt", prompt);
+    formData.append("image_file", file);
 
+    try {
+      const res = await api.post("/generate", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log(res.data.image);
+      setOutput(res.data.image);
+
+      if (res.data.image) {
+        setOutput(res.data.image);
+      } else {
+        setError("No image returned from server");
+      }
+    } catch (e) {
+      setError(e?.response?.data?.error);
+    } finally {
+      isLoading(false);
+    }
   }
 
   return (
-    <div className="from-rose-400 bg-linear-to-br to-indigo-500 h-screen w-full">
+    <div className="from-rose-400 bg-linear-to-br to-indigo-500 h-full w-full">
       <div className="w-2xl mx-auto py-26">
         <h1 className="text-4xl text-white text-center font-semibold">
           Product Optikos
         </h1>
         <section className="flex flex-col from-blue-400 bg-linear-to-br to-purple-500 p-10 rounded-lg space-y-2">
-          {error && <p className="text-red-800 font-semibold text-2xl">{error}</p>}
+          {error && (
+            <p className="text-red-800 font-semibold text-2xl">{error}</p>
+          )}
+          {pre && (
+            <img
+              src={pre}
+              alt="Selected preview"
+              className="w-64 h-auto mt-4 rounded-lg shadow self-center"
+            />
+          )}
           <div className="">
             <label htmlFor="image" className="pr-3">
               Upload Image:
@@ -56,30 +86,38 @@ function App() {
               placeholder=""
               id="image"
               className="rounded border-2"
-              onChange={handleChange}
+              onChange={handleImage}
             />
           </div>
 
-          <div className="w-full">
-            <label className="">Preset:</label>
-            <select
-              name="prompt"
-              value={formValues.prompt}
-              onChange={handleChange}
-              className="w-full p-2 rounded border bg-white"
-            >
-              <option value="" disabled>
-                Select a preset
-              </option>
-              {data.map((item, _) => (
-                <option key={_} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
+          <button
+            className="font-bold text-2xl text-white p-2 from-purple-600 bg-linear-to-br to-pink-400 w-auto rounded mx-auto"
+            onClick={handleSubmit}
+          >
+            {loading ? "Loading..." : "Remove BG"}
+          </button>
 
-          <button className="font-bold text-2xl text-white p-2 from-purple-600 bg-linear-to-br to-pink-400 w-36 rounded mx-auto" onClick={handleSubmit}>{loading ? "Loading..." : "Generate"}</button>
+          {output && (
+            <div className="mt-6 text-center">
+              <h2 className="text-white text-xl font-bold mb-3">
+                Generated Output
+              </h2>
+
+              <img
+                src={output}
+                alt="AI Result"
+                className="mx-auto w-80 rounded-lg shadow-lg border"
+              />
+
+              <a
+                href={output}
+                download="product_optikos.png"
+                className="mt-4 inline-block px-4 py-2 bg-white text-purple-700 font-bold rounded"
+              >
+                Download
+              </a>
+            </div>
+          )}
         </section>
       </div>
     </div>

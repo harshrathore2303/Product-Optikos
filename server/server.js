@@ -1,17 +1,39 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from "express";
+import cors from "cors";
+import multer from "multer";
+import dotenv from "dotenv";
+import { removeBgAxios } from "./services.js";
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
-app.use('/product');
 
+app.post("/generate", upload.single("image_file"), async (req, res) => {
+  try {
+    const file = req.file;
+    const resultImage = await removeBgAxios(file);
 
+    const base64Image = Buffer.from(resultImage).toString("base64");
+    res.json({
+      image: `data:image/png;base64,${base64Image}`,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "remove.bg API request failed" });
+  }
+});
 
 app.listen(PORT, () => {
-    console.log(`Server has started in ${PORT}`);
+  console.log(`Server has started in ${PORT}`);
 });
