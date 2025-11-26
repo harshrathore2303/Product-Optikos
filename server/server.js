@@ -13,11 +13,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://lgan9k1jnh.execute-api.ap-south-1.amazonaws.com"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
+  cors()
 );
 
 app.post("/generate", upload.single("image_file"), async (req, res) => {
